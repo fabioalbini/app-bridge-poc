@@ -60,3 +60,7 @@ end
 gem "shakapacker", "= 7.2"
 
 gem "react_on_rails", "= 13.4"
+
+gem "shopify_app", "~> 21.9"
+
+gem "dotenv-rails", "~> 2.8"
