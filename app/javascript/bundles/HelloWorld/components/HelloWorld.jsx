@@ -1,27 +1,44 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import style from './HelloWorld.module.css';
 import enTranslations from '@shopify/polaris/locales/en.json';
-import {AppProvider, Page, LegacyCard, Button} from '@shopify/polaris';
+import {AppProvider, Page, Card, Button, Form, FormLayout, Checkbox, TextField} from '@shopify/polaris';
 
 const HelloWorld = (props) => {
-  const [name, setName] = useState(props.name);
+  const [email, setEmail] = useState(props.email);
+
+  const handleSubmit = useCallback(() => {
+    setEmail('');
+  }, []);
+
+  const handleEmailChange = useCallback((value) => setEmail(value), []);
 
   return (
     <div>
-      <h3>Hello, {name}!</h3>
+      <h3>Hello, {email}!</h3>
       <hr />
-      <form>
-        <label className={style.bright} htmlFor="name">
-          Say hello to:
-          <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-        </label>
-      </form>
       <AppProvider i18n={enTranslations}>
       <Page title="Example app">
-        <LegacyCard sectioned>
-          <Button onClick={() => alert('Button clicked!')}>Example button</Button>
-        </LegacyCard>
+        <Card>
+          <Form onSubmit={handleSubmit}>
+            <FormLayout>
+              <TextField
+                value={email}
+                onChange={ handleEmailChange }
+                label="Email"
+                type="email"
+                helpText={
+                  <span>
+                      Hello {email}!
+                  </span>
+                }
+              />
+
+              <Button submit>Submit</Button>
+            </FormLayout>
+          </Form>
+        </Card>
+        <br />
       </Page>
     </AppProvider>
     </div>
@@ -29,7 +46,7 @@ const HelloWorld = (props) => {
 };
 
 HelloWorld.propTypes = {
-  name: PropTypes.string.isRequired, // this is passed from the Rails view
+  email: PropTypes.string.isRequired, // this is passed from the Rails view
 };
 
 export default HelloWorld;

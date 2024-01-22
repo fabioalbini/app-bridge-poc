@@ -8,7 +8,7 @@ class Poc::Embedded::ProductsController < ApplicationController
 
 
   def index
-    @hello_world_props = { name: "Stranger" }
+    @hello_world_props = { email: "stranger@email.com" }
     @products = Product.all
   end
 end
