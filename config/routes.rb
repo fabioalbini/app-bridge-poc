@@ -16,7 +16,11 @@ Rails.application.routes.draw do
     resources :products, only: [:index]
 
     namespace :embedded do
-      resources :products, only: [:index]
+      resources :products, only: [:index] do
+        collection do
+          get 'publish'
+        end
+      end
     end
   end
 end
