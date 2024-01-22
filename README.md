@@ -5,6 +5,7 @@
 This app is a POC to test rendering the same Polaris react component from an embedded app in Shopify and from a regular route exposed from the application.
 
 The POC used the react_on_rails gem (ref: https://github.com/shakacode/react_on_rails)
+
 How to setup react_on_rails: https://www.shakacode.com/react-on-rails/docs/getting-started/
 
 Ths app is exposing 2 routes for the POC, `/poc/products` and `/poc/embedded/products`.
